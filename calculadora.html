@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+
+      /* FUNDO */
+      background-image: url('https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=1920&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+    }
+
+    /* CALCULADORA */
+    .calculadora{
+      background: rgba(10, 15, 25, 0.88);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:25px;
+      border-radius:28px;
+      width:360px;
+      backdrop-filter: blur(12px);
+      box-shadow:
+      0 0 30px rgba(0,0,0,0.7),
+      inset 0 0 10px rgba(255,255,255,0.03);
+    }
+
+    /* TOPO */
+    .topo{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+    }
+
+    .topo img{
+      width:55px;
+      height:55px;
+    }
+
+    .titulo{
+      color:white;
+      font-size:28px;
+      font-weight:bold;
+      letter-spacing:1px;
+      text-shadow:0 0 10px rgba(255,255,255,0.3);
+    }
+
+    /* DISPLAY */
+    .display{
+      width:100%;
+      height:75px;
+      border:none;
+      outline:none;
+      border-radius:18px;
+      padding:15px;
+      margin-bottom:18px;
+
+      background: rgba(255,255,255,0.06);
+      color:white;
+      font-size:32px;
+      text-align:right;
+
+      box-shadow:
+      inset 0 0 8px rgba(255,255,255,0.05);
+    }
+
+    /* BOTÕES */
+    .botoes{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+    }
+
+    button{
+      height:65px;
+      border:none;
+      border-radius:18px;
+      font-size:22px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.2s;
+
+      color:white;
+      background: rgba(255,255,255,0.07);
+
+      backdrop-filter: blur(5px);
+
+      box-shadow:
+      inset 0 0 5px rgba(255,255,255,0.04),
+      0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    button:hover{
+      transform:scale(1.05);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .operador{
+      background: rgba(255, 166, 0, 0.18);
+    }
+
+    .operador:hover{
+      background: rgba(255, 166, 0, 0.3);
+    }
+
+    .igual{
+      background: rgba(16, 185, 129, 0.25);
+    }
+
+    .igual:hover{
+      background: rgba(16, 185, 129, 0.4);
+    }
+
+    .limpar{
+      background: rgba(239, 68, 68, 0.22);
+    }
+
+    .limpar:hover{
+      background: rgba(239, 68, 68, 0.4);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="calculadora">
+
+    <!-- TOPO -->
+    <div class="topo">
+      <img src="https://cdn-icons-png.flaticon.com/512/3655/3655600.png">
+
+      <div class="titulo">🧮 Calculadora</div>
+
+      <img src="https://cdn-icons-png.flaticon.com/512/2784/2784487.png">
+    </div>
+
+    <!-- DISPLAY -->
+    <input type="text" id="display" class="display" disabled>
+
+    <!-- BOTÕES -->
+    <div class="botoes">
+
+      <button class="limpar" onclick="limpar()">C</button>
+      <button class="operador" onclick="adicionar('/')">/</button>
+      <button class="operador" onclick="adicionar('*')">*</button>
+      <button class="operador" onclick="adicionar('-')">-</button>
+
+      <button onclick="adicionar('7')">7</button>
+      <button onclick="adicionar('8')">8</button>
+      <button onclick="adicionar('9')">9</button>
+      <button class="operador" onclick="adicionar('+')">+</button>
+
+      <button onclick="adicionar('4')">4</button>
+      <button onclick="adicionar('5')">5</button>
+      <button onclick="adicionar('6')">6</button>
+      <button class="igual" onclick="calcular()">=</button>
+
+      <button onclick="adicionar('1')">1</button>
+      <button onclick="adicionar('2')">2</button>
+      <button onclick="adicionar('3')">3</button>
+      <button onclick="adicionar('.')">.</button>
+
+      <button style="grid-column: span 4;" onclick="adicionar('0')">0</button>
+
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+
+    function adicionar(valor){
+      display.value += valor;
+    }
+
+    function limpar(){
+      display.value = "";
+    }
+
+    function calcular(){
+      try{
+        display.value = eval(display.value);
+      }catch{
+        display.value = "Erro";
+      }
+    }
+  </script>
+
+</body>
+</html>
